@@ -21,10 +21,18 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Bottom">
-            <Button Content="New wallet details" Background="Blue"/>
-            <Button Content="Edit wallet details" Background="Yellow"/>
+        <StackPanel Orientation="Horizontal" 
+                    Grid.Row="1" 
+                    VerticalAlignment="Bottom">
+            <Button Content="New wallet details" 
+                    Background="Blue" Click="ButtonAddWalletClick"/>
+            <Button Content="Edit wallet details" 
+                    Background="Yellow"/>
         </StackPanel>
-        <Button Grid.Row="1" Content="Delete wallet details" Background="Red" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+        <Button Grid.Row="1" 
+                Content="Delete wallet details" 
+                Background="Red" 
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Bottom" />
     </Grid>
 </Page>

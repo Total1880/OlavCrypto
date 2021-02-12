@@ -1,17 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
 
 namespace OlavCrypto.Pages
 {
@@ -20,9 +7,17 @@ namespace OlavCrypto.Pages
     /// </summary>
     public partial class OverviewWalletsPage : Page
     {
+        private PopupWindow _popupWindow;
+
+        public PopupWindow PopupWindow => _popupWindow ??= new PopupWindow();
         public OverviewWalletsPage()
         {
             InitializeComponent();
+        }
+
+        private void ButtonAddWalletClick(object sender, System.Windows.RoutedEventArgs e)
+        {
+            PopupWindow.Show();
         }
     }
 }
