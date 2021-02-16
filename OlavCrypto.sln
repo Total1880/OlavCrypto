@@ -9,15 +9,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{96F480
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OlavCrypto", "OlavCrypto\OlavCrypto.csproj", "{14C41752-6F38-4D22-ACC7-733DC81D890B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlavCrypto.Services", "OlavCrypto.Services\OlavCrypto.Services.csproj", "{F3491A63-1380-4F06-9E7B-96753AB1CADE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OlavCrypto.Services", "OlavCrypto.Services\OlavCrypto.Services.csproj", "{F3491A63-1380-4F06-9E7B-96753AB1CADE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlavCrypto.Repositories", "OlavCrypto.Repositories\OlavCrypto.Repositories.csproj", "{0FE7DD42-A243-4482-AC3F-32171F9CD46A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OlavCrypto.Repositories", "OlavCrypto.Repositories\OlavCrypto.Repositories.csproj", "{0FE7DD42-A243-4482-AC3F-32171F9CD46A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlavCrypto.Api", "OlavCrypto.Api\OlavCrypto.Api.csproj", "{7EA677F8-B1C6-46A2-867D-878FABAB4350}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OlavCrypto.Api", "OlavCrypto.Api\OlavCrypto.Api.csproj", "{7EA677F8-B1C6-46A2-867D-878FABAB4350}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlavCrypto.Api.Services", "OlavCrypto.Api.Services\OlavCrypto.Api.Services.csproj", "{D226577F-6F1E-4C7D-BB57-38B74C09DFC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OlavCrypto.Api.Services", "OlavCrypto.Api.Services\OlavCrypto.Api.Services.csproj", "{D226577F-6F1E-4C7D-BB57-38B74C09DFC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlavCrypto.Api.Repositories", "OlavCrypto.Api.Repositories\OlavCrypto.Api.Repositories.csproj", "{4D3DA0F9-BDBE-4E6B-B5BE-F4765E298957}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OlavCrypto.Api.Repositories", "OlavCrypto.Api.Repositories\OlavCrypto.Api.Repositories.csproj", "{4D3DA0F9-BDBE-4E6B-B5BE-F4765E298957}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{AD6F1CE1-EE91-4378-A89D-43D212836FD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlavCrypto.Models", "OlavCrypto.Models\OlavCrypto.Models.csproj", "{9B06FA47-18D4-4B73-9864-548834BC3D05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +53,10 @@ Global
 		{4D3DA0F9-BDBE-4E6B-B5BE-F4765E298957}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D3DA0F9-BDBE-4E6B-B5BE-F4765E298957}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D3DA0F9-BDBE-4E6B-B5BE-F4765E298957}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B06FA47-18D4-4B73-9864-548834BC3D05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B06FA47-18D4-4B73-9864-548834BC3D05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B06FA47-18D4-4B73-9864-548834BC3D05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B06FA47-18D4-4B73-9864-548834BC3D05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +68,7 @@ Global
 		{7EA677F8-B1C6-46A2-867D-878FABAB4350} = {96F48092-ED57-4F57-B0E9-46CBDF3B6D76}
 		{D226577F-6F1E-4C7D-BB57-38B74C09DFC0} = {96F48092-ED57-4F57-B0E9-46CBDF3B6D76}
 		{4D3DA0F9-BDBE-4E6B-B5BE-F4765E298957} = {96F48092-ED57-4F57-B0E9-46CBDF3B6D76}
+		{9B06FA47-18D4-4B73-9864-548834BC3D05} = {AD6F1CE1-EE91-4378-A89D-43D212836FD7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6903663F-074F-48A3-BFE1-5158FA812F91}
