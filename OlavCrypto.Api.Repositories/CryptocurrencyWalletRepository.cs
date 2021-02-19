@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace OlavCrypto.Api.Repositories
 {
-    public class WalletRepository : IRepository<Wallet>
+    class CryptocurrencyWalletRepository : IRepository<CryptocurrencyWallet>
     {
-        public bool Create(Wallet item)
+        public bool Create(CryptocurrencyWallet item)
         {
             try
             {
                 using var context = new OlavCryptoContext();
-                context.WalletList.Add(item);
+                context.CryptocurrencyWalletList.Add(item);
                 context.SaveChangesAsync();
 
                 return true;
@@ -31,7 +31,7 @@ namespace OlavCrypto.Api.Repositories
             try
             {
                 using var context = new OlavCryptoContext();
-                context.WalletList.Remove(context.WalletList.Find(id));
+                context.CryptocurrencyWalletList.Remove(context.CryptocurrencyWalletList.Find(id));
                 context.SaveChanges();
                 return true;
             }
@@ -41,18 +41,18 @@ namespace OlavCrypto.Api.Repositories
             }
         }
 
-        public IList<Wallet> Get()
+        public IList<CryptocurrencyWallet> Get()
         {
             using var context = new OlavCryptoContext();
-            return context.WalletList.ToList();
+            return context.CryptocurrencyWalletList.ToList();
         }
 
-        public bool Update(Wallet item)
+        public bool Update(CryptocurrencyWallet item)
         {
             try
             {
                 using var context = new OlavCryptoContext();
-                context.WalletList.Attach(item);
+                context.CryptocurrencyWalletList.Attach(item);
                 context.Entry(item).State = EntityState.Modified;
                 context.SaveChanges();
                 return true;

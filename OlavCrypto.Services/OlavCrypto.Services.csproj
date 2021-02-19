@@ -4,4 +4,9 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OlavCrypto.Models\OlavCrypto.Models.csproj" />
+    <ProjectReference Include="..\OlavCrypto.Repositories\OlavCrypto.Repositories.csproj" />
+  </ItemGroup>
+
 </Project>

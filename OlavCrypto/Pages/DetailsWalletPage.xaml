@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:OlavCrypto.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="DetailsWalletPage">
+      Title="DetailsWalletPage"
+      DataContext="{Binding DetailsWallet, Source={StaticResource Locator}}">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -24,9 +25,10 @@
                     Orientation="Horizontal" 
                     VerticalAlignment="Top">
             <TextBox Width="200" 
-                     Text="Wallet name"/>
+                     Text="{Binding Wallet.Name}"/>
             <Button Content="Edit"
-                    Background="Yellow"/>
+                    Background="Yellow"
+                    Command="{Binding SaveWalletCommand}"/>
         </StackPanel>
         <ListView Grid.Row="1"
                   Grid.Column="0"
