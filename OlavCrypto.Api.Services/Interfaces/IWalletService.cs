@@ -1,4 +1,5 @@
 ﻿using OlavCrypto.Models;
+using System.Collections.Generic;
 
 namespace OlavCrypto.Api.Services.Interfaces
 {
@@ -6,5 +7,6 @@ namespace OlavCrypto.Api.Services.Interfaces
     {
         bool CreateWallet(Wallet wallet);
         bool EditWallet(Wallet wallet);
+        IList<Wallet> GetWallets();
     }
 }

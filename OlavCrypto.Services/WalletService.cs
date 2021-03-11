@@ -1,6 +1,8 @@
 ﻿using OlavCrypto.Models;
 using OlavCrypto.Repositories;
 using OlavCrypto.Services.Interfaces;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace OlavCrypto.Services
 {
@@ -12,6 +14,12 @@ namespace OlavCrypto.Services
         {
             _walletRepository = walletRepository;
         }
+
+        public Task<IList<Wallet>> GetWallets()
+        {
+            return _walletRepository.Get();
+        }
+
         public bool SaveWallet(Wallet wallet, bool newWallet)
         {
             if (newWallet)

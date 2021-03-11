@@ -1,6 +1,7 @@
 ﻿using OlavCrypto.Models;
 using OlavCrypto.Repositories.RestClient;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace OlavCrypto.Repositories
 {
@@ -22,9 +23,9 @@ namespace OlavCrypto.Repositories
             throw new System.NotImplementedException();
         }
 
-        public IList<Wallet> Get()
+        public Task<IList<Wallet>> Get()
         {
-            throw new System.NotImplementedException();
+            return _client.GetData<Wallet>(EndPoints.Wallet);
         }
 
         public bool Update(Wallet item)

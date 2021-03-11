@@ -1,6 +1,7 @@
 ﻿using OlavCrypto.Api.Repositories;
 using OlavCrypto.Api.Services.Interfaces;
 using OlavCrypto.Models;
+using System.Collections.Generic;
 
 namespace OlavCrypto.Api.Services
 {
@@ -20,6 +21,11 @@ namespace OlavCrypto.Api.Services
         public bool EditWallet(Wallet wallet)
         {
             return _walletRepository.Update(wallet);
+        }
+
+        public IList<Wallet> GetWallets()
+        {
+            return _walletRepository.Get();
         }
     }
 }

@@ -19,5 +19,10 @@ namespace OlavCrypto.Pages
         {
             PopupWindow.Show();
         }
+
+        private void ButtonEditWalletClick(object sender, System.Windows.RoutedEventArgs e)
+        {
+            PopupWindow.Show();
+        }
     }
 }

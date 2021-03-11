@@ -20,10 +20,12 @@ namespace OlavCrypto
             builder.RegisterType<OlavCryptoRestClient>().As<OlavCryptoRestClient>().WithParameter("baseAdress", _baseURI);
 
             builder.RegisterType<DetailsWalletViewModel>().SingleInstance();
+            builder.RegisterType<OverviewWalletsViewModel>().SingleInstance();
 
             _container = builder.Build();
         }
 
         public DetailsWalletViewModel DetailsWallet => _container.Resolve<DetailsWalletViewModel>();
+        public OverviewWalletsViewModel OverviewWallets => _container.Resolve<OverviewWalletsViewModel>();
     }
 }

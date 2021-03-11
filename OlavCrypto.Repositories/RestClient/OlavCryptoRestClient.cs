@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace OlavCrypto.Repositories.RestClient
 {
@@ -33,6 +35,20 @@ namespace OlavCrypto.Repositories.RestClient
             response.Wait();
 
             return response.Result.IsSuccessStatusCode;
+        }
+
+        public async Task<IList<T>> GetData<T>(string endpoint)
+        {
+            var result = await _instance.GetAsync(endpoint);
+
+            if (!result.IsSuccessStatusCode)
+            {
+                throw new HttpRequestException($"error: {result.StatusCode}");
+            }
+
+            var json = await result.Content.ReadAsStringAsync();
+
+            return JsonConvert.DeserializeObject<IList<T>>(json);
         }
     }
 }
