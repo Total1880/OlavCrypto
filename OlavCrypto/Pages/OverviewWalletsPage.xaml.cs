@@ -7,9 +7,6 @@ namespace OlavCrypto.Pages
     /// </summary>
     public partial class OverviewWalletsPage : Page
     {
-        private PopupWindow _popupWindow;
-
-        public PopupWindow PopupWindow => _popupWindow ??= new PopupWindow();
         public OverviewWalletsPage()
         {
             InitializeComponent();
@@ -17,11 +14,13 @@ namespace OlavCrypto.Pages
 
         private void ButtonAddWalletClick(object sender, System.Windows.RoutedEventArgs e)
         {
+            PopupWindow PopupWindow = new PopupWindow();
             PopupWindow.Show();
         }
 
         private void ButtonEditWalletClick(object sender, System.Windows.RoutedEventArgs e)
         {
+            PopupWindow PopupWindow = new PopupWindow();
             PopupWindow.Show();
         }
     }
