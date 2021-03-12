@@ -1,17 +1,8 @@
-﻿using OlavCrypto.Pages;
+﻿using GalaSoft.MvvmLight.Messaging;
+using OlavCrypto.Messages.WindowOpeners;
+using OlavCrypto.Pages;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace OlavCrypto
 {
@@ -21,11 +12,26 @@ namespace OlavCrypto
     public partial class PopupWindow : Window
     {
         private DetailsWalletPage _detailsWalletPage;
+        private DetailsCryptoPage _detailsCryptoPage;
 
         public DetailsWalletPage DetailsWalletPage => _detailsWalletPage ??= new DetailsWalletPage();
+        public DetailsCryptoPage DetailsCryptoPage => _detailsCryptoPage ??= new DetailsCryptoPage();
+
         public PopupWindow()
         {
             InitializeComponent();
+            MainFrame.NavigationService.Navigate(DetailsWalletPage);
+            Messenger.Default.Register<OpenDetailsCryptoMessage>(this, OpenDetailsCryptoPage);
+            Messenger.Default.Register<OpenDetailsWalletMessage>(this, OpenDetailsWalletPage);
+        }
+
+        private void OpenDetailsCryptoPage(OpenDetailsCryptoMessage obj)
+        {
+            MainFrame.NavigationService.Navigate(DetailsCryptoPage);
+        }
+
+        private void OpenDetailsWalletPage(OpenDetailsWalletMessage obj)
+        {
             MainFrame.NavigationService.Navigate(DetailsWalletPage);
         }
     }

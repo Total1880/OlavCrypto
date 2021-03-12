@@ -79,6 +79,11 @@
                     Background="Blue"
                     Foreground="White"
                     HorizontalAlignment="Center"/>
+            <Button Content="Add cryptocurrency"
+                    Background="LawnGreen"
+                    Foreground="White"
+                    HorizontalAlignment="Center"
+                    Command="{Binding AddCryptoCommand}"/>
         </StackPanel>
         <Button Grid.Row="3" 
                 Grid.Column="0" 

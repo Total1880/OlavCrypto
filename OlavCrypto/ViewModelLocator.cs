@@ -21,11 +21,13 @@ namespace OlavCrypto
 
             builder.RegisterType<DetailsWalletViewModel>().SingleInstance();
             builder.RegisterType<OverviewWalletsViewModel>().SingleInstance();
+            builder.RegisterType<DetailsCryptoViewModel>().SingleInstance();
 
             _container = builder.Build();
         }
 
         public DetailsWalletViewModel DetailsWallet => _container.Resolve<DetailsWalletViewModel>();
         public OverviewWalletsViewModel OverviewWallets => _container.Resolve<OverviewWalletsViewModel>();
+        public DetailsCryptoViewModel DetailsCrypto => _container.Resolve<DetailsCryptoViewModel>();
     }
 }

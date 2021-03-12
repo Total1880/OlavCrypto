@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OlavCrypto.Api.Repositories
 {
-    class CryptocurrenyRepository : IRepository<Cryptocurrency>
+    public class CryptocurrencyRepository : IRepository<Cryptocurrency>
     {
         public bool Create(Cryptocurrency item)
         {

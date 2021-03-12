@@ -10,6 +10,7 @@ namespace OlavCrypto.Services
             builder.RegisterModule<RepositoriesModule>();
 
             builder.RegisterType<WalletService>().AsImplementedInterfaces();
+            builder.RegisterType<CryptocurrencyService>().AsImplementedInterfaces();
         }
     }
 }

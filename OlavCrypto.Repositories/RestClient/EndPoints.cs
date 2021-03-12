@@ -3,5 +3,6 @@
     class EndPoints
     {
         public const string Wallet = "Wallet";
+        public const string Cryptocurrency = "Cryptocurrency";
     }
 }

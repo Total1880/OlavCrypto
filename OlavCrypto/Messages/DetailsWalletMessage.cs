@@ -2,15 +2,15 @@
 
 namespace OlavCrypto.Messages
 {
-    class OpenDetailsWalletMessage
+    class DetailsWalletMessage
     {
         public Wallet Wallet { get; set; }
 
-        public OpenDetailsWalletMessage() : this(new Wallet())
+        public DetailsWalletMessage() : this(new Wallet())
         {
 
         }
-        public OpenDetailsWalletMessage(Wallet wallet)
+        public DetailsWalletMessage(Wallet wallet)
         {
             Wallet = wallet;
         }

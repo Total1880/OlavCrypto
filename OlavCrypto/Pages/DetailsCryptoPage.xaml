@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:OlavCrypto.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="DetailsCryptoPage">
+      Title="DetailsCryptoPage"
+      DataContext="{Binding DetailsCrypto, Source={StaticResource Locator}}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -18,22 +19,26 @@
                 <Label Content="Name"
                        Width="150"
                        HorizontalContentAlignment="Right"/>
-                <TextBox Width="150"/>
+                <TextBox Width="150"
+                         Text="{Binding Cryptocurrency.Name}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Short Name" 
                        Width="150"
                        HorizontalContentAlignment="Right"/>
-                <TextBox Width="150"/>
+                <TextBox Width="150"
+                         Text="{Binding Cryptocurrency.ShortName}"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal"
                     Grid.Row="1"
                     VerticalAlignment="Bottom">
             <Button Content="Save" 
-                    Background="LawnGreen"/>
+                    Background="LawnGreen"
+                    Command="{Binding SaveCryptoCommand}"/>
             <Button Content="Cancel" 
-                    Background="Red"/>
+                    Background="Red"
+                    Command="{Binding CancelCommand}"/>
         </StackPanel>
     </Grid>
 </Page>

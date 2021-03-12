@@ -25,12 +25,12 @@ namespace OlavCrypto.ViewModels
 
         private void OpenDetailsWallet()
         {
-            MessengerInstance.Send(new OpenDetailsWalletMessage(SelectedWallet));
+            MessengerInstance.Send(new DetailsWalletMessage(SelectedWallet));
         }
 
         private void OpenNewDetailsWallet()
         {
-            MessengerInstance.Send(new OpenDetailsWalletMessage());
+            MessengerInstance.Send(new DetailsWalletMessage());
         }
 
         public OverviewWalletsViewModel(IWalletService walletService)

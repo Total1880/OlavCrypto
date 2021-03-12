@@ -7,6 +7,7 @@ namespace OlavCrypto.Repositories
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<WalletRepository>().AsImplementedInterfaces();
+            builder.RegisterType<CryptocurrencyRepository>().AsImplementedInterfaces();
         }
     }
 }
