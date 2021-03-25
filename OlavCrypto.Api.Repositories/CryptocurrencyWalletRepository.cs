@@ -3,19 +3,21 @@ using OlavCrypto.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OlavCrypto.Api.Repositories
 {
-    class CryptocurrencyWalletRepository : IRepository<CryptocurrencyWallet>
+    public class CryptocurrencyWalletRepository : IRepository<CryptocurrencyWallet>
     {
         public bool Create(CryptocurrencyWallet item)
         {
             try
             {
                 using var context = new OlavCryptoContext();
+
+                context.WalletList.Attach(item.Wallet);
+                context.CryptocurrencyList.Attach(item.Cryptocurrency);
                 context.CryptocurrencyWalletList.Add(item);
+
                 context.SaveChangesAsync();
 
                 return true;

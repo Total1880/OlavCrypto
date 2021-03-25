@@ -23,6 +23,9 @@ namespace OlavCrypto.Api
             services.AddScoped<ICryptocurrencyService, CryptocurrencyService>();
             services.AddScoped<IRepository<Cryptocurrency>, CryptocurrencyRepository>();
 
+            services.AddScoped<ICryptocurrencyWalletService, CryptocurrencyWalletService>();
+            services.AddScoped<IRepository<CryptocurrencyWallet>, CryptocurrencyWalletRepository>();
+
             services.AddControllers();
 
             services.AddSwaggerGen(c =>

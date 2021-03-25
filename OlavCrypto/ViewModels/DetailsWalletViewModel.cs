@@ -14,6 +14,7 @@ namespace OlavCrypto.ViewModels
     {
         private readonly IWalletService _walletService;
         private readonly ICryptocurrencyService _cryptocurrencyService;
+        private readonly ICryptocurrencyWalletService _cryptocurrencyWalletService;
         private Wallet _wallet;
         private Cryptocurrency _selectedCryptocurrency;
         private IList<Cryptocurrency> _cryptocurrencyList;
@@ -29,10 +30,11 @@ namespace OlavCrypto.ViewModels
         public RelayCommand AddCryptoCommand => _addCryptoCommand ??= new RelayCommand(AddCrypto);
         public RelayCommand AddCryptoWalletCommand => _addCryptoWalletCommand ??= new RelayCommand(AddCryptoWallet);
 
-        public DetailsWalletViewModel(IWalletService walletService, ICryptocurrencyService cryptocurrencyService)
+        public DetailsWalletViewModel(IWalletService walletService, ICryptocurrencyService cryptocurrencyService, ICryptocurrencyWalletService cryptocurrencyWalletService)
         {
             _walletService = walletService;
             _cryptocurrencyService = cryptocurrencyService;
+            _cryptocurrencyWalletService = cryptocurrencyWalletService;
 
             MessengerInstance.Register<DetailsWalletMessage>(this, InitializeWallet);
 
@@ -62,12 +64,12 @@ namespace OlavCrypto.ViewModels
 
         private void AddCryptoWallet()
         {
-            if (Wallet == null || SelectedCryptoCurrency == null || Wallet.WalletId > 0)
+            if (Wallet == null || SelectedCryptoCurrency == null || Wallet.WalletId == 0)
             {
                 return;
             }
 
-            CryptocurrencyWallet cryptocurrencyWallet = new CryptocurrencyWallet { Wallet = Wallet, Cryptocurrency = SelectedCryptoCurrency };
+            _cryptocurrencyWalletService.SaveCryptocurrencyWallet(new CryptocurrencyWallet { Wallet = Wallet, Cryptocurrency = SelectedCryptoCurrency });
         }
     }
 }
