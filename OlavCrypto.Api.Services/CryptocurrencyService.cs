@@ -1,6 +1,7 @@
 ﻿using OlavCrypto.Api.Repositories;
 using OlavCrypto.Api.Services.Interfaces;
 using OlavCrypto.Models;
+using System.Collections.Generic;
 
 namespace OlavCrypto.Api.Services
 {
@@ -16,6 +17,11 @@ namespace OlavCrypto.Api.Services
         public bool CreateCryptocurrency(Cryptocurrency cryptocurrency)
         {
             return _cryptocurrencyRepository.Create(cryptocurrency);
+        }
+
+        public IList<Cryptocurrency> GetCryptocurrencies()
+        {
+            return _cryptocurrencyRepository.Get();
         }
     }
 }

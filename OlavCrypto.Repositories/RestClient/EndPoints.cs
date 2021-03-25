@@ -4,5 +4,6 @@
     {
         public const string Wallet = "Wallet";
         public const string Cryptocurrency = "Cryptocurrency";
+        public const string CryptoCurrencyWallet = "CryptoCurrencyWallet";
     }
 }
