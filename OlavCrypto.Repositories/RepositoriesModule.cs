@@ -9,6 +9,7 @@ namespace OlavCrypto.Repositories
             builder.RegisterType<WalletRepository>().AsImplementedInterfaces();
             builder.RegisterType<CryptocurrencyRepository>().AsImplementedInterfaces();
             builder.RegisterType<CryptocurrencyWalletRepository>().AsImplementedInterfaces();
+            builder.RegisterType<CryptocurrencyDetailsRepository>().AsImplementedInterfaces();
         }
     }
 }

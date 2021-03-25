@@ -4,7 +4,6 @@ using OlavCrypto.Messages;
 using OlavCrypto.Messages.WindowOpeners;
 using OlavCrypto.Models;
 using OlavCrypto.Services.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

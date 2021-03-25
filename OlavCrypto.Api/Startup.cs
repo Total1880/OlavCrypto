@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
@@ -25,6 +24,9 @@ namespace OlavCrypto.Api
 
             services.AddScoped<ICryptocurrencyWalletService, CryptocurrencyWalletService>();
             services.AddScoped<IRepository<CryptocurrencyWallet>, CryptocurrencyWalletRepository>();
+
+            services.AddScoped<ICryptocurrencyDetailsService, CryptocurrencyDetailsService>();
+            services.AddScoped<IRepository<CryptocurrencyDetails>, CryptocurrencyDetailsRepository>();
 
             services.AddControllers();
 

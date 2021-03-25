@@ -2,11 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\OlavCrypto.Api.Repositories\OlavCrypto.Api.Repositories.csproj" />
     <ProjectReference Include="..\OlavCrypto.Models\OlavCrypto.Models.csproj" />
+    <ProjectReference Include="..\OlavCrypto.Repositories\OlavCrypto.Repositories.csproj" />
   </ItemGroup>
 
 </Project>

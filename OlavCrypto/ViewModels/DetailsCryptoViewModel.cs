@@ -3,7 +3,6 @@ using GalaSoft.MvvmLight.Command;
 using OlavCrypto.Messages.WindowOpeners;
 using OlavCrypto.Models;
 using OlavCrypto.Services.Interfaces;
-using System;
 
 namespace OlavCrypto.ViewModels
 {

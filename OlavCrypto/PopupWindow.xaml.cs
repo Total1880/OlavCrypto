@@ -1,7 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
 using OlavCrypto.Messages.WindowOpeners;
 using OlavCrypto.Pages;
-using System;
 using System.Windows;
 
 namespace OlavCrypto
