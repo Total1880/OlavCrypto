@@ -18,7 +18,13 @@ namespace OlavCrypto.Api.Repositories
                 context.CryptocurrencyList.Attach(item.Cryptocurrency);
                 context.CryptocurrencyWalletList.Add(item);
 
-                context.SaveChangesAsync();
+                context.SaveChanges();
+
+                var newItem = new CryptocurrencyDetails { CryptocurrencyWallet = item };
+                context.CryptocurrencyWalletList.Attach(newItem.CryptocurrencyWallet);
+                context.CryptocurrencyDetailsList.Add(newItem);
+
+                context.SaveChanges();
 
                 return true;
             }
@@ -46,7 +52,7 @@ namespace OlavCrypto.Api.Repositories
         public IList<CryptocurrencyWallet> Get()
         {
             using var context = new OlavCryptoContext();
-            return context.CryptocurrencyWalletList.ToList();
+            return context.CryptocurrencyWalletList.Include(x => x.Cryptocurrency).Include(x => x.Wallet).ToList();
         }
 
         public bool Update(CryptocurrencyWallet item)

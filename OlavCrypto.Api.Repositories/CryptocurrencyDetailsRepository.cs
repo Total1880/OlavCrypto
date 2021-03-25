@@ -42,7 +42,7 @@ namespace OlavCrypto.Api.Repositories
         public IList<CryptocurrencyDetails> Get()
         {
             using var context = new OlavCryptoContext();
-            return context.CryptocurrencyDetailsList.ToList();
+            return context.CryptocurrencyDetailsList.Include(x => x.CryptocurrencyWallet.Cryptocurrency).Include(x => x.CryptocurrencyWallet.Wallet).ToList();
         }
 
         public bool Update(CryptocurrencyDetails item)

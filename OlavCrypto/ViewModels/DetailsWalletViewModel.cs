@@ -14,9 +14,11 @@ namespace OlavCrypto.ViewModels
         private readonly IWalletService _walletService;
         private readonly ICryptocurrencyService _cryptocurrencyService;
         private readonly ICryptocurrencyWalletService _cryptocurrencyWalletService;
+        private readonly ICryptocurrencyDetailsService _cryptocurrencyDetailsService;
         private Wallet _wallet;
         private Cryptocurrency _selectedCryptocurrency;
         private IList<Cryptocurrency> _cryptocurrencyList;
+        private IList<CryptocurrencyDetails> _cryptoCurrencyDetailsList;
         private RelayCommand _saveWalletCommand;
         private RelayCommand _addCryptoCommand;
         private RelayCommand _addCryptoWalletCommand;
@@ -24,16 +26,17 @@ namespace OlavCrypto.ViewModels
         public Wallet Wallet { get => _wallet; set { _wallet = value; RaisePropertyChanged(); } }
         public Cryptocurrency SelectedCryptoCurrency { get => _selectedCryptocurrency; set { _selectedCryptocurrency = value; RaisePropertyChanged(); } }
         public IList<Cryptocurrency> CryptocurrencyList { get => _cryptocurrencyList; set { _cryptocurrencyList = value; RaisePropertyChanged(); } }
-
+        public IList<CryptocurrencyDetails> CryptoCurrencyDetailsList { get => _cryptoCurrencyDetailsList; set { _cryptoCurrencyDetailsList = value; RaisePropertyChanged(); } }
         public RelayCommand SaveWalletCommand => _saveWalletCommand ??= new RelayCommand(SaveWallet);
         public RelayCommand AddCryptoCommand => _addCryptoCommand ??= new RelayCommand(AddCrypto);
         public RelayCommand AddCryptoWalletCommand => _addCryptoWalletCommand ??= new RelayCommand(AddCryptoWallet);
 
-        public DetailsWalletViewModel(IWalletService walletService, ICryptocurrencyService cryptocurrencyService, ICryptocurrencyWalletService cryptocurrencyWalletService)
+        public DetailsWalletViewModel(IWalletService walletService, ICryptocurrencyService cryptocurrencyService, ICryptocurrencyWalletService cryptocurrencyWalletService, ICryptocurrencyDetailsService cryptocurrencyDetailsService)
         {
             _walletService = walletService;
             _cryptocurrencyService = cryptocurrencyService;
             _cryptocurrencyWalletService = cryptocurrencyWalletService;
+            _cryptocurrencyDetailsService = cryptocurrencyDetailsService;
 
             MessengerInstance.Register<DetailsWalletMessage>(this, InitializeWallet);
 
@@ -43,11 +46,17 @@ namespace OlavCrypto.ViewModels
         private void InitializeWallet(DetailsWalletMessage obj)
         {
             Wallet = obj.Wallet;
+            _ = LoadCryptocurrencyDetails();
         }
 
         private async Task LoadCryptocurrencyList()
         {
             CryptocurrencyList = await _cryptocurrencyService.GetCryptocurrencies();
+        }
+
+        private async Task LoadCryptocurrencyDetails()
+        {
+            CryptoCurrencyDetailsList = await _cryptocurrencyDetailsService.GetCryptocurrencyDetailsPerWalletId(Wallet.WalletId);
         }
 
         private void SaveWallet()

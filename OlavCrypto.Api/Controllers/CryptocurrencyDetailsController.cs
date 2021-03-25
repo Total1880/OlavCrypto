@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OlavCrypto.Api.Services.Interfaces;
 using OlavCrypto.Models;
+using System;
 using System.Net;
 
 namespace OlavCrypto.Api.Controllers
@@ -27,6 +28,22 @@ namespace OlavCrypto.Api.Controllers
             }
 
             return BadRequest();
+        }
+
+        [HttpGet]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public IActionResult GetCryptocurrencyDetails()
+        {
+            try
+            {
+                return Ok(_cryptocurrencyDetailsService.GetCryptocurrencyDetails());
+            }
+            catch (Exception)
+            {
+
+                return BadRequest();
+            }
         }
     }
 }

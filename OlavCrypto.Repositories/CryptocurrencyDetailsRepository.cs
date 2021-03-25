@@ -16,7 +16,7 @@ namespace OlavCrypto.Repositories
 
         public bool Create(CryptocurrencyDetails item)
         {
-            return _client.CreateData(EndPoints.CryptocurrenyDetails, item);
+            return _client.CreateData(EndPoints.CryptocurrencyDetails, item);
         }
 
         public bool Delete(int id)
@@ -26,7 +26,7 @@ namespace OlavCrypto.Repositories
 
         public Task<IList<CryptocurrencyDetails>> Get()
         {
-            throw new System.NotImplementedException();
+            return _client.GetData<CryptocurrencyDetails>(EndPoints.CryptocurrencyDetails);
         }
 
         public bool Update(CryptocurrencyDetails item)
