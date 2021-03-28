@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using OlavCrypto.Repositories.RestClient;
+using OlavCrypto.Repositories;
 using OlavCrypto.Services;
 using OlavCrypto.ViewModels;
 using static System.Configuration.ConfigurationManager;
