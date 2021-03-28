@@ -45,5 +45,20 @@ namespace OlavCrypto.Api.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpPut]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public IActionResult EditCryptocurrencyDetails(CryptocurrencyDetails cryptocurrencyDetails)
+        {
+            if (_cryptocurrencyDetailsService.UpdateCryptocurrencyDetails(cryptocurrencyDetails))
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
     }
 }

@@ -35,7 +35,8 @@
                   Grid.RowSpan="2"
                   Width="300"
                   HorizontalAlignment="Left"
-                  ItemsSource="{Binding CryptoCurrencyDetailsList}">
+                  ItemsSource="{Binding CryptoCurrencyDetailsList}"
+                  SelectedItem="{Binding SelectedCryptoCurrencyDetails}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="150"
@@ -72,6 +73,7 @@
                        Width="150"
                        HorizontalContentAlignment="Right"/>
                 <ComboBox Width="200"
+                          Text="{Binding SelectedCryptoCurrency.Name}"
                           ItemsSource="{Binding CryptocurrencyList}"
                           SelectedItem="{Binding SelectedCryptoCurrency}"
                           DisplayMemberPath="Name"/>
@@ -80,12 +82,14 @@
                 <Label Content="Balance cryptocurrency:"
                        Width="150"
                        HorizontalContentAlignment="Right"/>
-                <TextBox Width="200"/>
+                <TextBox Width="200"
+                         Text="{Binding SelectedCryptoCurrencyDetails.Balance}"/>
             </StackPanel>
             <Button Content="Save cryptocurrency"
                     Background="Blue"
                     Foreground="White"
-                    HorizontalAlignment="Center"/>
+                    HorizontalAlignment="Center"
+                    Command="{Binding EditCryptocurrencyDetailsCommand}"/>
             <Button Content="Add cryptocurrency"
                     Background="LawnGreen"
                     Foreground="White"

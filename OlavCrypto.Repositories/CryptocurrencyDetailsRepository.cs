@@ -31,7 +31,7 @@ namespace OlavCrypto.Repositories
 
         public bool Update(CryptocurrencyDetails item)
         {
-            throw new System.NotImplementedException();
+            return _client.UpdateData(EndPoints.CryptocurrencyDetails, item);
         }
     }
 }
