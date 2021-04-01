@@ -18,7 +18,10 @@ namespace OlavCrypto
             builder.RegisterModule<ServicesModule>();
 
             var _baseURI = AppSettings.Get("BasisURL");
+            var _coinMarketCapURI = AppSettings.Get("CoinMarketCapURL");
+            var _coinMarketCapAPIKey = AppSettings.Get("CoinMarketCapAPIKey");
             builder.RegisterType<OlavCryptoRestClient>().As<OlavCryptoRestClient>().WithParameter("baseAdress", _baseURI);
+            builder.RegisterType<CoinMarketClient>().As<CoinMarketClient>().WithParameter("coinMarketCapAPIKey", _coinMarketCapAPIKey).WithParameter("coinMarketCapURI", _coinMarketCapURI);
 
             builder.RegisterType<DetailsWalletViewModel>().SingleInstance();
             builder.RegisterType<OverviewWalletsViewModel>().SingleInstance();
