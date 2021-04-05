@@ -8,6 +8,6 @@ namespace OlavCrypto.Services.Interfaces
     {
         bool SaveCryptocurrency(Cryptocurrency cryptocurrency);
         Task<IList<Cryptocurrency>> GetCryptocurrencies();
-        void UpdatePrice();
+        Task<double> UpdatePrice(string shortname);
     }
 }

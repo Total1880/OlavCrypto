@@ -4,6 +4,6 @@ namespace OlavCrypto.Repositories
 {
     public interface ICoinMarketCapRepository
     {
-        Task GetCurrentPrice(string shortname);
+        Task<double> GetCurrentPrice(string shortname);
     }
 }

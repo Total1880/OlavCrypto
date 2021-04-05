@@ -20,9 +20,9 @@ namespace OlavCrypto.Repositories
             _client = client;
         }
 
-        public async Task GetCurrentPrice(string shortname)
+        public async Task<double> GetCurrentPrice(string shortname)
         {
-            await _client.GetCurrentPrice(shortname);
+            return await _client.GetCurrentPrice(shortname);
         }
     }
 }

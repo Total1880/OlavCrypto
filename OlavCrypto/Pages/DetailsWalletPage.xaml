@@ -5,13 +5,13 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:OlavCrypto.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="1100"
       Title="DetailsWalletPage"
       DataContext="{Binding DetailsWallet, Source={StaticResource Locator}}">
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="600"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -33,7 +33,7 @@
         <ListView Grid.Row="1"
                   Grid.Column="0"
                   Grid.RowSpan="2"
-                  Width="300"
+                  Width="600"
                   HorizontalAlignment="Left"
                   ItemsSource="{Binding CryptoCurrencyDetailsList}"
                   SelectedItem="{Binding SelectedCryptoCurrencyDetails}">
@@ -46,6 +46,14 @@
                     <GridViewColumn Width="150"
                                     DisplayMemberBinding="{Binding Balance}">
                         <GridViewColumnHeader Content="Balance Cryprocurreny"/>
+                    </GridViewColumn>
+                    <GridViewColumn Width="150"
+                                    DisplayMemberBinding="{Binding CryptocurrencyWallet.Cryptocurrency.Price}">
+                        <GridViewColumnHeader Content="Price Cryprocurreny"/>
+                    </GridViewColumn>
+                    <GridViewColumn Width="150"
+                                    DisplayMemberBinding="{Binding BalanceInUSD}">
+                        <GridViewColumnHeader Content="Balance in USD"/>
                     </GridViewColumn>
                 </GridView>
             </ListView.View>

@@ -15,12 +15,18 @@ namespace OlavCrypto.Services
         {
             _cryptocurrencyRepository = cryptocurrencyRepository;
             _coinMarketCapRepository = coinMarketCapRepository;
-            UpdatePrice();
         }
 
-        public Task<IList<Cryptocurrency>> GetCryptocurrencies()
+        public async Task<IList<Cryptocurrency>> GetCryptocurrencies()
         {
-            return _cryptocurrencyRepository.Get();
+            var listCrypto = await _cryptocurrencyRepository.Get();
+
+            foreach (var crypto in listCrypto)
+            {
+                crypto.Price = await UpdatePrice(crypto.ShortName);
+            }
+
+            return listCrypto;
         }
 
         public bool SaveCryptocurrency(Cryptocurrency cryptocurrency)
@@ -28,9 +34,9 @@ namespace OlavCrypto.Services
             return _cryptocurrencyRepository.Create(cryptocurrency);
         }
 
-        public void UpdatePrice()
+        public async Task<double> UpdatePrice(string shortname)
         {
-            _coinMarketCapRepository.GetCurrentPrice("BTC");
+            return await _coinMarketCapRepository.GetCurrentPrice(shortname);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace OlavCrypto.Repositories.RestClient
             _instance.DefaultRequestHeaders.Add("Accepts", "application/json");
         }
 
-        public async Task GetCurrentPrice(string shortname)
+        public async Task<double> GetCurrentPrice(string shortname)
         {
             var addToUrl = "cryptocurrency/quotes/latest?symbol=" + shortname;
             var response = await _instance.GetAsync(addToUrl);
@@ -27,6 +27,8 @@ namespace OlavCrypto.Repositories.RestClient
 
             JToken token = JObject.Parse(await response.Content.ReadAsStringAsync());
             double price = (double)token.SelectToken("data").SelectToken(shortname).SelectToken("quote").SelectToken("USD").SelectToken("price");
+
+            return price;
         }
     }
 }

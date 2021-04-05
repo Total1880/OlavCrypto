@@ -1,4 +1,6 @@
-﻿namespace OlavCrypto.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace OlavCrypto.Models
 {
     public class Cryptocurrency
     {

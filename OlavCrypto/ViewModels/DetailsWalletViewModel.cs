@@ -6,6 +6,8 @@ using OlavCrypto.Models;
 using OlavCrypto.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace OlavCrypto.ViewModels
@@ -20,11 +22,13 @@ namespace OlavCrypto.ViewModels
         private Cryptocurrency _selectedCryptocurrency;
         private CryptocurrencyDetails _selectedCryptocurrencyDetails;
         private IList<Cryptocurrency> _cryptocurrencyList;
-        private IList<CryptocurrencyDetails> _cryptoCurrencyDetailsList;
+        private ObservableCollection<CryptocurrencyDetails> _cryptoCurrencyDetailsList;
         private RelayCommand _saveWalletCommand;
         private RelayCommand _addCryptoCommand;
         private RelayCommand _addCryptoWalletCommand;
         private RelayCommand _editCryptocurrencyDetailsCommand;
+        private bool _loadCryptoCurrencyDetailsCompleted = false;
+        private bool _loadCryptoCurrencyCompleted = false;
 
         public Wallet Wallet { get => _wallet; set { _wallet = value; RaisePropertyChanged(); } }
         public Cryptocurrency SelectedCryptoCurrency { get => _selectedCryptocurrency; set { _selectedCryptocurrency = value; RaisePropertyChanged(); } }
@@ -42,7 +46,7 @@ namespace OlavCrypto.ViewModels
             }
         }
         public IList<Cryptocurrency> CryptocurrencyList { get => _cryptocurrencyList; set { _cryptocurrencyList = value; RaisePropertyChanged(); } }
-        public IList<CryptocurrencyDetails> CryptoCurrencyDetailsList { get => _cryptoCurrencyDetailsList; set { _cryptoCurrencyDetailsList = value; RaisePropertyChanged(); } }
+        public ObservableCollection<CryptocurrencyDetails> CryptoCurrencyDetailsList { get => _cryptoCurrencyDetailsList; set { _cryptoCurrencyDetailsList = value; RaisePropertyChanged(); } }
         public RelayCommand SaveWalletCommand => _saveWalletCommand ??= new RelayCommand(SaveWallet);
         public RelayCommand AddCryptoCommand => _addCryptoCommand ??= new RelayCommand(AddCrypto);
         public RelayCommand AddCryptoWalletCommand => _addCryptoWalletCommand ??= new RelayCommand(AddCryptoWallet);
@@ -69,11 +73,47 @@ namespace OlavCrypto.ViewModels
         private async Task LoadCryptocurrencyList()
         {
             CryptocurrencyList = await _cryptocurrencyService.GetCryptocurrencies();
+            _loadCryptoCurrencyCompleted = true;
+
+            if (_loadCryptoCurrencyDetailsCompleted)
+            {
+                UpdatePrice();
+                _loadCryptoCurrencyCompleted = false;
+                _loadCryptoCurrencyDetailsCompleted = false;
+            }
         }
 
         private async Task LoadCryptocurrencyDetails()
         {
-            CryptoCurrencyDetailsList = await _cryptocurrencyDetailsService.GetCryptocurrencyDetailsPerWalletId(Wallet.WalletId);
+            CryptoCurrencyDetailsList = new ObservableCollection<CryptocurrencyDetails>();
+
+            var list = await _cryptocurrencyDetailsService.GetCryptocurrencyDetailsPerWalletId(Wallet.WalletId);
+
+            foreach (var item in list)
+            {
+                CryptoCurrencyDetailsList.Add(item);
+            }
+
+            _loadCryptoCurrencyDetailsCompleted = true;
+
+            if (_loadCryptoCurrencyCompleted)
+            {
+                UpdatePrice();
+                _loadCryptoCurrencyCompleted = false;
+                _loadCryptoCurrencyDetailsCompleted = false;
+            }
+        }
+
+        private void UpdatePrice()
+        {
+            var list = CryptoCurrencyDetailsList;
+            foreach (var item in list)
+            {
+                item.CryptocurrencyWallet.Cryptocurrency.Price = CryptocurrencyList.Where(x => x.CryptocurrencyId == item.CryptocurrencyWallet.Cryptocurrency.CryptocurrencyId).FirstOrDefault().Price;
+                item.BalanceInUSD = item.Balance * item.CryptocurrencyWallet.Cryptocurrency.Price;
+            }
+            CryptoCurrencyDetailsList = new ObservableCollection<CryptocurrencyDetails>();
+            CryptoCurrencyDetailsList = list;
         }
 
         private void SaveWallet()
@@ -95,6 +135,9 @@ namespace OlavCrypto.ViewModels
             }
 
             _cryptocurrencyWalletService.SaveCryptocurrencyWallet(new CryptocurrencyWallet { Wallet = Wallet, Cryptocurrency = SelectedCryptoCurrency });
+
+            _loadCryptoCurrencyCompleted = true;
+            _ = LoadCryptocurrencyDetails();
         }
 
         private void EditCryptocurrencyDetails()
@@ -106,6 +149,7 @@ namespace OlavCrypto.ViewModels
 
             if (_cryptocurrencyDetailsService.UpdateCryptocurrencyDetails(SelectedCryptoCurrencyDetails))
             {
+                _loadCryptoCurrencyCompleted = true;
                 _ = LoadCryptocurrencyDetails();
             }
         }
