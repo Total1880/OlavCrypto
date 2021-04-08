@@ -21,7 +21,8 @@
                 <GridView>
                     <GridViewColumn Header="Wallet"
                                     DisplayMemberBinding="{Binding Name}"/>
-                    <!--https://stackoverflow.com/questions/31894212/how-to-set-listview-column-dynamically-->
+                    <GridViewColumn Header="Balance in USD"
+                                    DisplayMemberBinding="{Binding BalanceInUSD}"/>
                 </GridView>
             </ListView.View>
         </ListView>

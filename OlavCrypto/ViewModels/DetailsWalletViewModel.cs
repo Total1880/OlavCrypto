@@ -60,13 +60,13 @@ namespace OlavCrypto.ViewModels
             _cryptocurrencyDetailsService = cryptocurrencyDetailsService;
 
             MessengerInstance.Register<DetailsWalletMessage>(this, InitializeWallet);
-
-            _ = LoadCryptocurrencyList();
         }
 
         private void InitializeWallet(DetailsWalletMessage obj)
         {
             Wallet = obj.Wallet;
+
+            _ = LoadCryptocurrencyList();
             _ = LoadCryptocurrencyDetails();
         }
 
