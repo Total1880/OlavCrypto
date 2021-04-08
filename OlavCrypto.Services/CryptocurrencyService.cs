@@ -1,6 +1,7 @@
 ﻿using OlavCrypto.Models;
 using OlavCrypto.Repositories;
 using OlavCrypto.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -23,7 +24,12 @@ namespace OlavCrypto.Services
 
             foreach (var crypto in listCrypto)
             {
-                crypto.Price = await UpdatePrice(crypto.ShortName);
+                if (crypto.PriceUpdateDate < DateTime.Today)
+                {
+                    crypto.Price = await UpdatePrice(crypto.ShortName);
+                    crypto.PriceUpdateDate = DateTime.Today;
+                    UpdateCryptocurrency(crypto);
+                }
             }
 
             return listCrypto;
@@ -32,6 +38,11 @@ namespace OlavCrypto.Services
         public bool SaveCryptocurrency(Cryptocurrency cryptocurrency)
         {
             return _cryptocurrencyRepository.Create(cryptocurrency);
+        }
+
+        public bool UpdateCryptocurrency(Cryptocurrency cryptocurrency)
+        {
+            return _cryptocurrencyRepository.Update(cryptocurrency);
         }
 
         public async Task<double> UpdatePrice(string shortname)

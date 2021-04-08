@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OlavCrypto.Models
 {
@@ -8,5 +9,6 @@ namespace OlavCrypto.Models
         public string Name { get; set; }
         public string ShortName { get; set; }
         public double Price { get; set; }
+        public DateTime PriceUpdateDate { get; set; }
     }
 }

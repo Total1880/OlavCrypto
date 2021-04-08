@@ -23,5 +23,10 @@ namespace OlavCrypto.Api.Services
         {
             return _cryptocurrencyRepository.Get();
         }
+
+        public bool UpdateCryptocurrency(Cryptocurrency cryptocurrency)
+        {
+            return _cryptocurrencyRepository.Update(cryptocurrency);
+        }
     }
 }
