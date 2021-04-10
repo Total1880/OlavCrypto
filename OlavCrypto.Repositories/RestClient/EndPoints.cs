@@ -6,5 +6,6 @@
         public const string Cryptocurrency = "Cryptocurrency";
         public const string CryptoCurrencyWallet = "CryptoCurrencyWallet";
         public const string CryptocurrencyDetails = "CryptocurrencyDetails";
+        public const string CryptocurrencyHistory = "CryptocurrencyHistory";
     }
 }

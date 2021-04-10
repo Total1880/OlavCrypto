@@ -9,6 +9,7 @@ namespace OlavCrypto.Api.Repositories
         public DbSet<Cryptocurrency> CryptocurrencyList { get; set; }
         public DbSet<CryptocurrencyDetails> CryptocurrencyDetailsList { get; set; }
         public DbSet<CryptocurrencyWallet> CryptocurrencyWalletList { get; set; }
+        public DbSet<CryptocurrencyHistory> CryptocurrencyHistoryList { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

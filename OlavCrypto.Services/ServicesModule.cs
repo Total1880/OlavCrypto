@@ -13,6 +13,7 @@ namespace OlavCrypto.Services
             builder.RegisterType<CryptocurrencyService>().AsImplementedInterfaces();
             builder.RegisterType<CryptocurrencyWalletService>().AsImplementedInterfaces();
             builder.RegisterType<CryptocurrencyDetailsService>().AsImplementedInterfaces();
+            builder.RegisterType<CryptocurrencyHistoryService>().AsImplementedInterfaces();
         }
     }
 }

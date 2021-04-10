@@ -24,9 +24,9 @@ namespace OlavCrypto.Repositories
             throw new System.NotImplementedException();
         }
 
-        public Task<IList<Cryptocurrency>> Get()
+        public async Task<IList<Cryptocurrency>> Get()
         {
-            return _client.GetData<Cryptocurrency>(EndPoints.Cryptocurrency);
+            return await _client.GetData<Cryptocurrency>(EndPoints.Cryptocurrency);
         }
 
         public bool Update(Cryptocurrency item)

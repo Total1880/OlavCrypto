@@ -11,11 +11,13 @@ namespace OlavCrypto.Services
     {
         private readonly IRepository<Cryptocurrency> _cryptocurrencyRepository;
         private readonly ICoinMarketCapRepository _coinMarketCapRepository;
+        private readonly ICryptocurrencyHistoryService _cryptocurrencyHistoryService;
 
-        public CryptocurrencyService(IRepository<Cryptocurrency> cryptocurrencyRepository, ICoinMarketCapRepository coinMarketCapRepository)
+        public CryptocurrencyService(IRepository<Cryptocurrency> cryptocurrencyRepository, ICoinMarketCapRepository coinMarketCapRepository, ICryptocurrencyHistoryService cryptocurrencyHistoryService)
         {
             _cryptocurrencyRepository = cryptocurrencyRepository;
             _coinMarketCapRepository = coinMarketCapRepository;
+            _cryptocurrencyHistoryService = cryptocurrencyHistoryService;
         }
 
         public async Task<IList<Cryptocurrency>> GetCryptocurrencies()
@@ -42,6 +44,7 @@ namespace OlavCrypto.Services
 
         public bool UpdateCryptocurrency(Cryptocurrency cryptocurrency)
         {
+            _cryptocurrencyHistoryService.CreateCryptocurrencyHistory(new CryptocurrencyHistory { Cryptocurrency = cryptocurrency, Date = cryptocurrency.PriceUpdateDate, Price = cryptocurrency.Price });
             return _cryptocurrencyRepository.Update(cryptocurrency);
         }
 
