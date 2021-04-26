@@ -21,12 +21,12 @@ namespace OlavCrypto.Repositories.RestClient
 
         public async Task<double> GetCurrentPrice(string shortname)
         {
-            var addToUrl = "cryptocurrency/quotes/latest?symbol=" + shortname;
+            var addToUrl = "cryptocurrency/quotes/latest?symbol=" + shortname + "&convert=EUR";
             var response = await _instance.GetAsync(addToUrl);
             dynamic result = JsonConvert.DeserializeObject<dynamic>(await response.Content.ReadAsStringAsync());
 
             JToken token = JObject.Parse(await response.Content.ReadAsStringAsync());
-            double price = (double)token.SelectToken("data").SelectToken(shortname).SelectToken("quote").SelectToken("USD").SelectToken("price");
+            double price = (double)token.SelectToken("data").SelectToken(shortname).SelectToken("quote").SelectToken("EUR").SelectToken("price");
 
             return price;
         }
